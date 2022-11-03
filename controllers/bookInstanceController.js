@@ -129,7 +129,7 @@ exports.bookinstance_delete_get = (req, res) => {
         res.redirect("/catalog/bookinstances");
       }
       // Successful, so render.
-      res.render("bookinstance_delete", {
+      res.render("bookInstance_delete", {
         title: "Delete bookInstance",
         bookInstance: results.bookInstance,
       });
@@ -142,7 +142,7 @@ exports.bookinstance_delete_post = (req, res) => {
   async.series(
     {
       bookInstance(callback) {
-        BookInstance.findById(req.body.bookInstanceid).exec(callback);
+        BookInstance.findById(req.body.bookinstanceid).exec(callback);
       },
     },
     (err, results) => {
@@ -152,7 +152,7 @@ exports.bookinstance_delete_post = (req, res) => {
       // Success
 
       // Author has no books. Delete object and redirect to the list of authors.
-      BookInstance.findByIdAndRemove(req.body.bookInstanceid, (err) => {
+      BookInstance.findByIdAndRemove(req.body.bookinstanceid, (err) => {
         if (err) {
           return next(err);
         }
